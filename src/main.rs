@@ -27,5 +27,10 @@ fn main() {
     let sig = private.sign(&serialize_message);
 
     let verification = public.verify(sig, &serialize_message);
+
     println!("Is the message authentic? {}", verification);
+
+    let deserialized_message: Transaction =  serde_json::from_str(&serialize_message).unwrap();
+
+    println!("The message amount is {}", deserialized_message.amount);
 }
